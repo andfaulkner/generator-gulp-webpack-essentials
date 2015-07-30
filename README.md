@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # generator-generator-gulp-webpack-frontend-essentials [![Build Status](https://secure.travis-ci.org/andfaulkner/generator-generator-gulp-webpack-frontend-essentials.png?branch=master)](https://travis-ci.org/andfaulkner/generator-generator-gulp-webpack-frontend-essentials)
 
 > [Yeoman](http://yeoman.io) generator
@@ -45,3 +46,7 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 ## License
 
 MIT
+=======
+# generator-gulp-webpack-essentials
+Generates an empty project with key Gulp and Webpack plugins (and loaders) installed and basic tasks defined; for projects of the following types: minimal (for making e.g. npm modules, gulp plugins) webapp, server, or full-stack (webapp and server)
+>>>>>>> b2e8fbbc3aa08ff854b9b67ad7bfe6eb677f26e1
