@@ -77,9 +77,9 @@ var GulpWebpackEssentialsGenerator = PrivateBase.extend({
                 name: 'appName',
                 message: 'What is your project\'s name?',
                 store: true,
-                default: this.appname // Default to current folder name
+                default: this.appName // Default to current folder name
             }, function(answers) {
-                this.appName = answers.appname;
+                this.appName = answers.appName;
                 done();
             }.bind(this));
         },
@@ -112,6 +112,24 @@ var GulpWebpackEssentialsGenerator = PrivateBase.extend({
                 done();
             }.bind(this));
         },
+
+        //ask the user for the project name
+        promptToInstallPkgs: function promptToInstallPkgs() {
+            var done = this.async();
+
+            this.prompt({
+                type: 'list',
+                name: 'doInstallPkgs',
+                message: 'Would you like me to auto-install your packages?',
+                choices: ['true', 'false'],
+                store: true,
+                default: true // Default to current folder name
+            }, function(answers) {
+                this.doInstallPkgs = (answers.doInstallPkgs === 'true') ? true : false;
+                done();
+            }.bind(this));
+        },
+
 
     },
 
@@ -163,11 +181,16 @@ var GulpWebpackEssentialsGenerator = PrivateBase.extend({
     //Make the basic root files
     generateBasic: function generateBasic() {
         var templateData = {
-            'app_name': this.appName
+            app_name: this.appName
         };
+        console.log('templateData.app_name');
+        console.log(templateData.app_name);
+        console.log('this.appName');
+        console.log(this.appName);
+        this.copy('_nodemon.json', 'nodemon.json');
         this.template('_gitignore', '.gitignore');
         this.template('_package.json', 'package.json', templateData);
-        this.copy('_bower.json', 'bower.json', templateData);
+        this.template('_bower.json', 'bower.json', templateData);
         this.template('_gulpfile.js', 'gulpfile.js');
     },
 
@@ -178,20 +201,25 @@ var GulpWebpackEssentialsGenerator = PrivateBase.extend({
      */
     install: {
         installDeps: function installDeps() {
-            this.installDependencies({
-                bower: true,
-                npm: true,
-                skipInstall: false,
-                callback: function pkgInstallDone() {
-                    console.log('npm and Bower package installation complete!');
-                }
-            });
+            if (!!this.doInstallPkgs) {
+                this.installDependencies({
+                    bower: true,
+                    npm: true,
+                    skipInstall: false,
+                    callback: function pkgInstallDone() {
+                        console.log('npm and Bower package installation complete!');
+                    }
+                });
+            } else {
+                console.log('no packages were installed - run npm install in' +
+                            'project root to complete setup');
+            }
         }
     },
 
 
     end: function end() {
-
+        console.log('Setup complete!');
     }
 });
 

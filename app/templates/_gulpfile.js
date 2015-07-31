@@ -89,7 +89,7 @@ SRC = {
         scss: 'content/styles/scss/**/*.scss',
         html: 'content/html/**/*.html',
         tasks: 'tasks/',
-        // webpack: 'tasks/webpack.config.js',
+        webpack: 'tasks/webpack.config.js',
         // webpack_once: 'tasks/webpack.runonce.config.js',
 };
 //-----------------------------------------------------------------------//
