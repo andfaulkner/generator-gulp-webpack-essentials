@@ -47,6 +47,7 @@
     "dependencies": {
         "async": "^1.4.0",
         "bluebird": "^2.9.34",
+        "dotenv": "^1.2.0",
         "jquery": "^2.1.4",
         "handlebars": "^3.0.3",
         "lodash": "^3.10.0",
